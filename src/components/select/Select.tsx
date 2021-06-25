@@ -1,23 +1,25 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { SelectOption } from './SelectOption'
+import { SelectOptionsList } from './SelectOptionsList'
 import { SelectProps } from './types'
 
 export const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
-  const handleChange = (newValue: string) => onChange && onChange(newValue)
+  const [isOpen, setIsOpen] = React.useState(false)
+  const toggleIsOpen = () => setIsOpen(!isOpen)
+  const handleClick = (newValue: string) => onChange && onChange(newValue)
 
   if (options.length === 0) return null
 
   return (
     <div>
-      {options.map((option, idx) => (
-        <SelectOption
-          {...option}
+      <div onClick={toggleIsOpen}>{value}</div>
+      {isOpen && (
+        <SelectOptionsList
           currentValue={value}
-          onClick={handleChange}
-          key={idx}
+          options={options}
+          onClick={handleClick}
         />
-      ))}
+      )}
     </div>
   )
 }

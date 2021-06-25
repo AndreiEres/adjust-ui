@@ -11,9 +11,9 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
 }) => {
   const [isOpen, setIsOpen] = React.useState(false)
-  const toggleIsOpen = () => setIsOpen(!isOpen)
+  const open = () => setIsOpen(true)
   const handleClick = (newValue: string) => {
-    toggleIsOpen()
+    setIsOpen(false)
     onChange && onChange(newValue)
   }
 
@@ -21,7 +21,7 @@ export const Select: React.FC<SelectProps> = ({
 
   return (
     <div>
-      <div className={s.select} onClick={toggleIsOpen}>
+      <div className={s.select} onClick={open}>
         {value}
       </div>
       {isOpen && (

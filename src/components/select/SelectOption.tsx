@@ -1,21 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { isSelectBaseOption } from './guards'
+import { SelectBaseOption, SelectBaseOptionProps } from './SelectBaseOption'
+import { SelectGroupOption, SelectGroupOptionProps } from './SelectGroupOption'
 
-export const SelectOption: React.FC<SelectOptionProps> = ({
-  value,
-  label,
-  description,
-}) => {
-  return <option value={value}>{label}</option>
-}
+export const SelectOption: React.FC<SelectOptionProps> = (option) =>
+  isSelectBaseOption(option) ? (
+    <SelectBaseOption {...option} key={option.value} />
+  ) : (
+    <SelectGroupOption {...option} />
+  )
 
-export type SelectOptionProps = {
-  value: string
-  label: string
-  description?: string
-}
-SelectOption.propTypes = {
-  value: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  description: PropTypes.string,
-}
+export type SelectOptionProps = SelectGroupOptionProps | SelectBaseOptionProps

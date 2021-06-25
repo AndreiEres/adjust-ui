@@ -1,5 +1,5 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 import { SelectOption, SelectOptionProps } from './SelectOption'
 
 export const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
@@ -9,9 +9,10 @@ export const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
   if (options.length === 0) return null
 
   return (
-    <select value={value || options[0].value} onChange={handleChange}>
-      {options.map((option) => (
-        <SelectOption {...option} key={option.value} />
+    <select value={value} onChange={handleChange}>
+      {/* TODO: Remove idx as key */}
+      {options.map((option, idx) => (
+        <SelectOption {...option} key={idx} />
       ))}
     </select>
   )

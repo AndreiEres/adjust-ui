@@ -7,8 +7,29 @@ const flatOptions = [
   { value: 'holberton', label: 'Holberton' },
 ]
 
+const groupOptions = [
+  {
+    options: [
+      { value: 'hopper', label: 'Hopper' },
+      { value: 'holberton', label: 'Holberton' },
+    ],
+  },
+  {
+    options: [
+      { value: 'antonelli', label: 'Antonelli' },
+      { value: 'bartik', label: 'Bartik' },
+      { value: 'teitelbaum', label: 'Teitelbaum' },
+    ],
+  },
+]
+
 const App: React.FC = () => {
-  const [flatOptionsValue, setFlatOptionsValue] = React.useState('hopper')
+  const [flatOptionsValue, setFlatOptionsValue] = React.useState(
+    flatOptions[0].value
+  )
+  const [groupOptionsValue, setGroupOptionsValue] = React.useState(
+    groupOptions[0].options[0].value
+  )
 
   return (
     <div className='container'>
@@ -29,6 +50,17 @@ const App: React.FC = () => {
         value={flatOptionsValue}
         options={flatOptions}
         onChange={setFlatOptionsValue}
+      />
+
+      <h2>Case with groups</h2>
+      <code>{prettify(groupOptions)}</code>
+      <p>
+        Current value: <code>{groupOptionsValue}</code>
+      </p>
+      <Select
+        value={groupOptionsValue}
+        options={groupOptions}
+        onChange={setGroupOptionsValue}
       />
     </div>
   )

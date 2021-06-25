@@ -23,12 +23,44 @@ const groupOptions = [
   },
 ]
 
+const descriptionOptions = [
+  {
+    options: [
+      {
+        value: 'hopper',
+        label: 'Hopper',
+        description:
+          'Grace Hopper was an American computer scientist and US Navy rear admiral.',
+      },
+      {
+        value: 'holberton',
+        label: 'Holberton',
+        description:
+          'Frances Elisabeth Holberton was one of the programmers of the first computer.',
+      },
+    ],
+  },
+  {
+    options: [
+      {
+        value: 'teitelbaum',
+        label: 'Teitelbaum',
+        description:
+          'Ruth Teitelbaum was was one of the first computer programmers in the world.',
+      },
+    ],
+  },
+]
+
 const App: React.FC = () => {
   const [flatOptionsValue, setFlatOptionsValue] = React.useState(
     flatOptions[0].value
   )
   const [groupOptionsValue, setGroupOptionsValue] = React.useState(
     groupOptions[0].options[0].value
+  )
+  const [descriptionOptionsValue, setDescriptionOptionsValue] = React.useState(
+    descriptionOptions[0].options[0].value
   )
 
   return (
@@ -60,7 +92,20 @@ const App: React.FC = () => {
       <Select
         value={groupOptionsValue}
         options={groupOptions}
+        showDescription
         onChange={setGroupOptionsValue}
+      />
+
+      <h2>Case with descriptions</h2>
+      <code>{prettify(descriptionOptions)}</code>
+      <p>
+        Current value: <code>{descriptionOptionsValue}</code>
+      </p>
+      <Select
+        value={descriptionOptionsValue}
+        options={descriptionOptions}
+        showDescription
+        onChange={setDescriptionOptionsValue}
       />
     </div>
   )

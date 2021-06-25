@@ -13,11 +13,13 @@ export type SelectOptionType = SelectBaseOptionType | SelectGroupOptionType
 export type SelectProps = {
   value: string
   options: SelectOptionType[]
+  showDescription?: boolean
   onChange?: (value: string) => void
 }
 
 export type SelectOptionCommonProps = {
   currentValue: string
+  showDescription: boolean
   onClick: (value: string) => void
 }
 

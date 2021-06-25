@@ -1,20 +1,26 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { SelectBaseOption, SelectBaseOptionProps } from './SelectBaseOption'
+import { SelectBaseOption } from './SelectBaseOption'
+import { SelectGroupOptionProps } from './types'
 
 export const SelectGroupOption: React.FC<SelectGroupOptionProps> = ({
   options,
+  currentValue,
+  onClick,
 }) => (
   <>
     {options.map((option) => (
-      <SelectBaseOption {...option} key={option.value} />
+      <SelectBaseOption
+        {...option}
+        currentValue={currentValue}
+        onClick={onClick}
+        key={option.value}
+      />
     ))}
   </>
 )
 
-export type SelectGroupOptionProps = {
-  options: SelectBaseOptionProps[]
-}
 SelectGroupOption.propTypes = {
   options: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
 }

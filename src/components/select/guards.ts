@@ -1,5 +1,4 @@
-import { SelectBaseOptionProps } from './SelectBaseOption'
-import { SelectGroupOptionProps } from './SelectGroupOption'
+import { SelectBaseOptionProps, SelectGroupOptionProps } from './types'
 
 export const isSelectBaseOption = (
   option: SelectBaseOptionProps | SelectGroupOptionProps

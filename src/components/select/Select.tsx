@@ -1,28 +1,27 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { SelectOption, SelectOptionProps } from './SelectOption'
+import { SelectOption } from './SelectOption'
+import { SelectProps } from './types'
 
 export const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    onChange && onChange(e.currentTarget.value)
+  const handleChange = (newValue: string) => onChange && onChange(newValue)
 
   if (options.length === 0) return null
 
   return (
-    <select value={value} onChange={handleChange}>
-      {/* TODO: Remove idx as key */}
+    <div>
       {options.map((option, idx) => (
-        <SelectOption {...option} key={idx} />
+        <SelectOption
+          {...option}
+          currentValue={value}
+          onClick={handleChange}
+          key={idx}
+        />
       ))}
-    </select>
+    </div>
   )
 }
 
-type SelectProps = {
-  value: string
-  options: Array<SelectOptionProps>
-  onChange?: (value: string) => void
-}
 Select.propTypes = {
   value: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,

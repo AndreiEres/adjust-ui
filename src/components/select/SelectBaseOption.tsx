@@ -1,21 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { SelectBaseOptionProps } from './types'
 
 export const SelectBaseOption: React.FC<SelectBaseOptionProps> = ({
   value,
   label,
   description,
+  currentValue,
+  onClick,
 }) => {
-  return <option value={value}>{label}</option>
+  const isCurrent = value === currentValue
+  const handleClick = () => onClick(value)
+
+  return (
+    <div onClick={handleClick}>
+      {isCurrent ? '>>>' : ''}
+      {label}
+    </div>
+  )
 }
 
-export type SelectBaseOptionProps = {
-  value: string
-  label: string
-  description?: string
-}
 SelectBaseOption.propTypes = {
   value: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   description: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
 }

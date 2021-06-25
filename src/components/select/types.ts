@@ -17,6 +17,11 @@ export type SelectProps = {
   onChange?: (value: string) => void
 }
 
+export type SelectTriggerProps = {
+  label: string
+  onClick: () => void
+}
+
 export type SelectOptionCommonProps = {
   currentValue: string
   showDescription: boolean

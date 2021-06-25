@@ -1,7 +1,9 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import { SelectBaseOptionProps } from './types'
+import React from 'react'
+import { cn } from '../../utils/classnames'
 import s from './styles.module.css'
+import { SelectBaseOptionProps } from './types'
+import { ReactComponent as CheckIcon } from './assets/check-light.svg'
 
 export const SelectBaseOption: React.FC<SelectBaseOptionProps> = ({
   value,
@@ -15,9 +17,14 @@ export const SelectBaseOption: React.FC<SelectBaseOptionProps> = ({
   const handleClick = () => onClick(value)
 
   return (
-    <div className={isCurrent ? s.current : undefined} onClick={handleClick}>
-      <div>{label}</div>
-      {showDescription && <div>{description}</div>}
+    <div className={cn(s.option, isCurrent && s.current)} onClick={handleClick}>
+      <div className={s.optionIcon}>{isCurrent && <CheckIcon />}</div>
+      <div className={s.optionInfo}>
+        <div className={s.optionLabel}>{label}</div>
+        {showDescription && (
+          <div className={s.optionDescription}>{description}</div>
+        )}
+      </div>
     </div>
   )
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import { SelectOption } from './SelectOption'
 import { SelectOptionsListProps } from './types'
 import s from './styles.module.css'
+import { cn } from '../../utils/classnames'
 
 export const SelectOptionsList: React.FC<SelectOptionsListProps> = ({
   currentValue,
@@ -10,7 +11,7 @@ export const SelectOptionsList: React.FC<SelectOptionsListProps> = ({
   showDescription,
   onClick,
 }) => (
-  <div className={s.optionsList}>
+  <div className={cn(s.optionsList, showDescription && s.withDescription)}>
     {options.map((option, idx) => (
       <SelectOption
         {...option}

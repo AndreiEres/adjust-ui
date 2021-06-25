@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { SelectBaseOption } from './SelectBaseOption'
-import { SelectGroupOptionProps } from './types'
 import s from './styles.module.css'
+import { SelectGroupOptionProps } from './types'
 
 export const SelectGroupOption: React.FC<SelectGroupOptionProps> = ({
   options,
@@ -15,7 +15,7 @@ export const SelectGroupOption: React.FC<SelectGroupOptionProps> = ({
       <SelectBaseOption
         {...option}
         currentValue={currentValue}
-        showDescription
+        showDescription={showDescription}
         onClick={onClick}
         key={option.value}
       />

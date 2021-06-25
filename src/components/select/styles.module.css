@@ -1,16 +1,114 @@
-.select {
-  display: inline-block;
-  border: 1px solid gray;
+.root {
+  --color-white: #fff;
+  --color-light: #f9fafc;
+  --color-light-gray: #eceef4;
+  --color-gray: #cdd0e0;
+  --color-dark-gray: #6e7492;
+  --color-dark: #191d2f;
+  --color-cyan: #00a3be;
+  --color-dark-cyan: #05778f;
+  --color-shadow: #6e749226;
+
+  --size-s-5: 4px;
+  --size-s-10: 8px;
+  --size-s-15: 12px;
+  --size-s-20: 16px;
+  --size-s-25: 20px;
+  --size-s-30: 24px;
+  --size-s-40: 32px;
+  --size-s-50: 40px;
+  --size-s-60: 48px;
+  --size-s-70: 56px;
+
+  --color-background: var(--color-light);
+  --color-key: var(--color-dark-cyan);
+  --color-hover: var(--color-light-gray);
+  --color-border: var(--color-gray);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.root * {
+  box-sizing: border-box;
+}
+
+.trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100px;
+  padding: var(--size-s-5) 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--size-s-5);
+  /* TODO: In spec we use white instead of background color, maybe mistake */
+  background-color: var(--color-background);
+  cursor: pointer;
+}
+
+.triggerLabel {
+  padding: 0 var(--size-s-15);
+}
+
+.triggerIcon {
+  display: flex;
+  padding-right: var(--size-s-10);
 }
 
 .optionsList {
-  border: 1px solid gray;
+  position: absolute;
+  top: 100%;
+  width: 141px;
+  margin-top: var(--size-s-5);
+  padding: var(--size-s-5) 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--size-s-5);
+  background-color: var(--color-background);
+  box-shadow: 0px 2px 8px var(--color-shadow);
+  cursor: pointer;
 }
 
-.groupOption {
-  border-bottom: 1px solid gray;
+.optionsList.withDescription {
+  width: 312px;
+}
+
+.groupOption:not(:last-child)::after {
+  content: '';
+  display: block;
+  margin: var(--size-s-5) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--size-s-5) 0;
+}
+
+.option:not(.current):hover {
+  background-color: var(--color-hover);
+}
+
+.optionIcon {
+  display: flex;
+  justify-content: center;
+  width: var(--size-s-50);
+}
+
+.optionInfo {
+  display: flex;
+  flex-direction: column;
+  padding-right: var(--size-s-20);
+}
+
+.optionDescription {
+  padding-top: calc(var(--size-s-5) / 2);
 }
 
 .current {
-  background-color: darkcyan;
+  color: var(--color-background);
+  background-color: var(--color-key);
+  cursor: default;
 }

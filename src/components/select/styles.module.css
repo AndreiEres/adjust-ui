@@ -1,8 +1,6 @@
-/* TODO: Fix dark mode styles */
-/* TODO: Set text colors */
-
 .root {
   --color-white: #fff;
+  --color-black: #000;
   --color-light: #f9fafc;
   --color-light-gray: #eceef4;
   --color-gray: #cdd0e0;
@@ -23,22 +21,43 @@
   --size-s-60: 48px;
   --size-s-70: 56px;
 
+  --font-size-1: 12px;
+  --font-size-2: 16px;
+  --line-height-base: 1.4;
+
+  --color-trigger-text: var(--color-black);
+  --color-trigger-background: var(--color-white);
+  --color-trigger-inner-shadow: var(--color-light-gray);
   --color-background: var(--color-light);
-  --color-key: var(--color-dark-cyan);
+  --color-current: var(--color-cyan);
+  --color-current-text: var(--color-light);
+  --color-current-border: var(--color-dark-cyan);
   --color-hover: var(--color-light-gray);
   --color-border: var(--color-gray);
+  --color-option-label: var(--color-dark);
+  --color-option-description: var(--color-dark-gray);
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
+  font-family: -apple-system, 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  font-size: var(--font-size-2);
+  line-height: var(--line-height-base);
 }
 
 .root.darkMode {
-  --color-background: var(--color-dark);
-  --color-key: var(--color-cyan);
-  --color-hover: var(--color-dark-gray);
-  --color-border: var(--color-dark-gray);
+  --color-trigger-text: var(--color-light);
+  --color-trigger-background: var(--color-dark);
+  --color-trigger-inner-shadow: #0b0d17;
+  --color-background: #212538;
+  --color-current: var(--color-cyan);
+  --color-current-text: var(--color-light);
+  --color-current-border: #5dbcd2;
+  --color-hover: #363a50;
+  --color-border: #434860;
+  --color-option-label: var(--color-light);
+  --color-option-description: var(--color-gray);
 }
 
 .root * {
@@ -53,48 +72,53 @@
   padding: var(--size-s-5) 0;
   border: 1px solid var(--color-border);
   border-radius: var(--size-s-5);
-  /* TODO: In spec we use white instead of background color, maybe mistake */
-  background-color: var(--color-background);
+  background-color: var(--color-trigger-background);
   cursor: pointer;
+  color: var(--color-trigger-text);
+  box-shadow: inset 0 -1px var(--color-trigger-inner-shadow);
 }
 
 .triggerLabel {
+  position: relative;
+  top: 1px; /* TODO: Magic number */
   padding: 0 var(--size-s-15);
 }
 
 .triggerIcon {
   display: flex;
-  padding-right: var(--size-s-10);
+  padding-right: 10px; /* TODO: Magic number */
 }
 
 .optionsList {
   position: absolute;
   top: 100%;
-  width: 141px;
+  width: 141px; /* TODO: Magic number */
   margin-top: var(--size-s-5);
-  padding: var(--size-s-5) 0;
+  padding: 3px 0; /* TODO: Magic number */
   border: 1px solid var(--color-border);
   border-radius: var(--size-s-5);
   background-color: var(--color-background);
   box-shadow: 0px 2px 8px var(--color-shadow);
+  color: var(--color-option-label);
   cursor: pointer;
 }
 
 .optionsList.withDescription {
-  width: 312px;
+  width: 312px; /* TODO: Magic number */
 }
 
 .groupOption:not(:last-child)::after {
   content: '';
   display: block;
   margin: var(--size-s-5) 0;
+  margin-top: 3px; /* TODO: Magic number */
   border-bottom: 1px solid var(--color-border);
 }
 
 .option {
   display: flex;
   align-items: flex-start;
-  padding: var(--size-s-5) 0;
+  padding: 1px 0; /* TODO: Magic number */
 }
 
 .option:not(.current):hover {
@@ -104,7 +128,11 @@
 .optionIcon {
   display: flex;
   justify-content: center;
+  position: relative;
+  top: 3px; /* TODO: Magic number */
+  left: -1px; /* TODO: Magic number */
   width: var(--size-s-50);
+  min-width: var(--size-s-50);
 }
 
 .optionInfo {
@@ -113,14 +141,32 @@
   padding-right: var(--size-s-20);
 }
 
+.optionLabel {
+  position: relative;
+  top: 1px; /* TODO: Magic number */
+  height: 22px;
+  overflow: hidden;
+}
+
 .optionDescription {
-  padding-top: calc(var(--size-s-5) / 2);
+  padding-bottom: var(--size-s-5);
+  color: var(--color-option-description);
+  font-size: var(--font-size-1);
+  height: 36px;
+  overflow: hidden;
 }
 
 .current {
-  color: var(--color-background);
-  background-color: var(--color-key);
+  margin: 0 -1px; /* TODO: Magic number */
+  border-left: 1px solid var(--color-current-border);
+  border-right: 1px solid var(--color-current-border);
+  background-color: var(--color-current);
+  color: var(--color-current-text);
   cursor: default;
+}
+
+.current .optionDescription {
+  color: var(--color-current-text);
 }
 
 .disabledEvents {

@@ -97,7 +97,6 @@ const App: React.FC = () => {
         <Select
           value={groupOptionsValue}
           options={groupOptions}
-          showDescription
           mode={mode}
           onChange={setGroupOptionsValue}
         />
@@ -112,6 +111,22 @@ const App: React.FC = () => {
           onChange={setDescriptionOptionsValue}
         />
         <code>{prettify(descriptionOptions)}</code>
+
+        <h2>Problems</h2>
+        <ol>
+          <li>Icon on target (chevron-down) has no dark version.</li>
+          <li>We have extra colors in dark mode.</li>
+          <li>We have to support key controls for select.</li>
+          <li>Have we disable text selection? I think we have to.</li>
+          <li>
+            We have magic numbers in code, it will cause problem in future.
+          </li>
+          <li>What we going to do with big texts</li>
+          <li>
+            Dark mode is props but in context of full design system we can use
+            something else
+          </li>
+        </ol>
       </div>
     </div>
   )

@@ -4,11 +4,8 @@ import { ReactComponent as ChevronIcon } from './assets/chevron-down.svg'
 import s from './styles.module.css'
 import { SelectTriggerProps } from './types'
 
-export const SelectTrigger: React.FC<SelectTriggerProps> = ({
-  label,
-  onClick,
-}) => (
-  <div className={s.trigger} onClick={onClick}>
+export const SelectTrigger: React.FC<SelectTriggerProps> = ({ label }) => (
+  <div className={s.trigger}>
     <div className={s.triggerLabel}>{label}</div>
     <div className={s.triggerIcon}>
       <ChevronIcon />
@@ -18,5 +15,4 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 
 SelectTrigger.propTypes = {
   label: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
 }

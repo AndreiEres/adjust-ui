@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { cn } from '../../utils/classnames'
 import useOnClickOutside from '../../utils/useOnClickOutside'
+import { optionByValue } from './optionByValue'
 import { SelectOptionsList } from './SelectOptionsList'
 import { SelectTrigger } from './SelectTrigger'
 import s from './styles.module.css'
@@ -17,6 +18,8 @@ export const Select: React.FC<SelectProps> = ({
   const [isOpen, setIsOpen] = React.useState(false)
   const ref = React.useRef(null)
   const isDarkMode = mode === 'dark'
+  const currentOption = optionByValue(value, options)
+  const currentLabel = currentOption?.label || ''
   const open = () => setIsOpen(true)
   const close = () => setIsOpen(false)
   const handleClick = (newValue: string) => {
@@ -30,7 +33,7 @@ export const Select: React.FC<SelectProps> = ({
   return (
     <div className={cn(s.root, isDarkMode && s.darkMode)}>
       <div className={cn(isOpen && s.disabledEvents)} onClick={open}>
-        <SelectTrigger label={value} />
+        <SelectTrigger label={currentLabel} />
       </div>
       {isOpen && (
         <div ref={ref}>

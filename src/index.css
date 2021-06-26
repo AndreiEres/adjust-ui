@@ -20,3 +20,8 @@ code {
   margin: 0 auto;
   padding: 20px;
 }
+
+.dark {
+  color: white;
+  background-color: #121523;
+}

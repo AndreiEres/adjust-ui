@@ -53,6 +53,7 @@ const descriptionOptions = [
 ]
 
 const App: React.FC = () => {
+  const [mode, setMode] = React.useState<'light' | 'dark'>('light')
   const [flatOptionsValue, setFlatOptionsValue] = React.useState(
     flatOptions[0].value
   )
@@ -62,51 +63,56 @@ const App: React.FC = () => {
   const [descriptionOptionsValue, setDescriptionOptionsValue] = React.useState(
     descriptionOptions[0].options[0].value
   )
+  const toggleMode = () => setMode(mode === 'dark' ? 'light' : 'dark')
 
   return (
-    <div className='container'>
-      <h1>Select</h1>
-      <p>
-        For test task{' '}
-        <a href='https://github.com/spaceship-forks/atlas-ds-challenge'>
-          atlas-ds-challenge
-        </a>
-      </p>
+    <div className={mode}>
+      <div className='container'>
+        <h1>Select</h1>
+        <label>
+          <input
+            type='checkbox'
+            checked={mode === 'dark'}
+            onChange={toggleMode}
+          />{' '}
+          Darkmode
+        </label>
+        <p>
+          For test task{' '}
+          <a href='https://github.com/spaceship-forks/atlas-ds-challenge'>
+            atlas-ds-challenge
+          </a>
+        </p>
 
-      <h2>Base case</h2>
-      <code>{prettify(flatOptions)}</code>
-      <p>
-        Current value: <code>{flatOptionsValue}</code>
-      </p>
-      <Select
-        value={flatOptionsValue}
-        options={flatOptions}
-        onChange={setFlatOptionsValue}
-      />
+        <h2>Base case</h2>
+        <Select
+          value={flatOptionsValue}
+          options={flatOptions}
+          mode={mode}
+          onChange={setFlatOptionsValue}
+        />
+        <code>{prettify(flatOptions)}</code>
 
-      <h2>Case with groups</h2>
-      <code>{prettify(groupOptions)}</code>
-      <p>
-        Current value: <code>{groupOptionsValue}</code>
-      </p>
-      <Select
-        value={groupOptionsValue}
-        options={groupOptions}
-        showDescription
-        onChange={setGroupOptionsValue}
-      />
+        <h2>Case with groups</h2>
+        <Select
+          value={groupOptionsValue}
+          options={groupOptions}
+          showDescription
+          mode={mode}
+          onChange={setGroupOptionsValue}
+        />
+        <code>{prettify(groupOptions)}</code>
 
-      <h2>Case with descriptions</h2>
-      <code>{prettify(descriptionOptions)}</code>
-      <p>
-        Current value: <code>{descriptionOptionsValue}</code>
-      </p>
-      <Select
-        value={descriptionOptionsValue}
-        options={descriptionOptions}
-        showDescription
-        onChange={setDescriptionOptionsValue}
-      />
+        <h2>Case with descriptions</h2>
+        <Select
+          value={descriptionOptionsValue}
+          options={descriptionOptions}
+          showDescription
+          mode={mode}
+          onChange={setDescriptionOptionsValue}
+        />
+        <code>{prettify(descriptionOptions)}</code>
+      </div>
     </div>
   )
 }

@@ -14,6 +14,7 @@ export type SelectProps = {
   value: string
   options: SelectOptionType[]
   showDescription?: boolean
+  mode?: 'light' | 'dark'
   onChange?: (value: string) => void
 }
 

@@ -1,3 +1,6 @@
+/* TODO: Fix dark mode styles */
+/* TODO: Set text colors */
+
 .root {
   --color-white: #fff;
   --color-light: #f9fafc;
@@ -29,6 +32,13 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
+}
+
+.root.darkMode {
+  --color-background: var(--color-dark);
+  --color-key: var(--color-cyan);
+  --color-hover: var(--color-dark-gray);
+  --color-border: var(--color-dark-gray);
 }
 
 .root * {

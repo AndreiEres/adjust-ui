@@ -146,13 +146,26 @@
   top: 1px; /* TODO: Magic number */
   height: 22px;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 83px;
+}
+
+.withDescription .optionLabel {
+  width: 254px;
 }
 
 .optionDescription {
-  padding-bottom: var(--size-s-5);
+  margin-bottom: var(--size-s-5);
   color: var(--color-option-description);
   font-size: var(--font-size-1);
-  height: 36px;
+  height: 32px;
+}
+
+.twoLineClamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 

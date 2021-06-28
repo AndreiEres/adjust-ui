@@ -22,7 +22,9 @@ export const SelectBaseOption: React.FC<SelectBaseOptionProps> = ({
       <div className={s.optionInfo}>
         <div className={s.optionLabel}>{label}</div>
         {showDescription && (
-          <div className={s.optionDescription}>{description}</div>
+          <div className={cn(s.optionDescription, s.twoLineClamp)}>
+            {description}
+          </div>
         )}
       </div>
     </div>

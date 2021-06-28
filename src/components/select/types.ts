@@ -20,6 +20,7 @@ export type SelectProps = {
 
 export type SelectTriggerProps = {
   label: string
+  onClick: () => void
 }
 
 export type SelectOptionCommonProps = {

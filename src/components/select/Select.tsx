@@ -32,18 +32,15 @@ export const Select: React.FC<SelectProps> = ({
 
   return (
     <div className={cn(s.root, isDarkMode && s.darkMode)}>
-      <div className={cn(isOpen && s.disabledEvents)} onClick={open}>
-        <SelectTrigger label={currentLabel} />
-      </div>
+      <SelectTrigger label={currentLabel} onClick={open} />
       {isOpen && (
-        <div ref={ref}>
-          <SelectOptionsList
-            currentValue={value}
-            options={options}
-            showDescription={showDescription}
-            onClick={handleClick}
-          />
-        </div>
+        <SelectOptionsList
+          ref={ref}
+          currentValue={value}
+          options={options}
+          showDescription={showDescription}
+          onClick={handleClick}
+        />
       )}
     </div>
   )

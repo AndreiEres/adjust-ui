@@ -5,13 +5,14 @@ import { SelectOptionsListProps } from './types'
 import s from './styles.module.css'
 import { cn } from '../../utils/classnames'
 
-export const SelectOptionsList: React.FC<SelectOptionsListProps> = ({
-  currentValue,
-  options,
-  showDescription,
-  onClick,
-}) => (
-  <div className={cn(s.optionsList, showDescription && s.withDescription)}>
+export const SelectOptionsList = React.forwardRef<
+  HTMLDivElement,
+  SelectOptionsListProps
+>(({ currentValue, options, showDescription, onClick }, ref) => (
+  <div
+    className={cn(s.optionsList, showDescription && s.withDescription)}
+    ref={ref}
+  >
     {options.map((option, idx) => (
       <SelectOption
         {...option}
@@ -22,7 +23,7 @@ export const SelectOptionsList: React.FC<SelectOptionsListProps> = ({
       />
     ))}
   </div>
-)
+))
 
 SelectOptionsList.propTypes = {
   currentValue: PropTypes.string.isRequired,

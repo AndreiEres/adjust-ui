@@ -8,6 +8,8 @@ import { SelectTrigger } from './SelectTrigger'
 import s from './styles.module.css'
 import { SelectProps } from './types'
 
+const TOGGLE_DELAY = 200
+
 export const Select: React.FC<SelectProps> = ({
   value,
   options,
@@ -15,24 +17,33 @@ export const Select: React.FC<SelectProps> = ({
   mode = 'light',
   onChange,
 }) => {
+  const [hasJustToggled, setHasJustToggled] = React.useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
   const ref = React.useRef(null)
   const isDarkMode = mode === 'dark'
   const currentOption = optionByValue(value, options)
   const currentLabel = currentOption?.label || ''
-  const open = () => setIsOpen(true)
-  const close = () => setIsOpen(false)
+  const toggle = () => {
+    if (hasJustToggled) return
+
+    setHasJustToggled(true)
+    setIsOpen(!isOpen)
+  }
   const handleClick = (newValue: string) => {
-    close()
+    toggle()
     onChange && onChange(newValue)
   }
-  useOnClickOutside(ref, close)
+  useOnClickOutside(ref, toggle)
+
+  React.useEffect(() => {
+    if (hasJustToggled) setTimeout(() => setHasJustToggled(false), TOGGLE_DELAY)
+  }, [hasJustToggled])
 
   if (options.length === 0) return null
 
   return (
     <div className={cn(s.root, isDarkMode && s.darkMode)}>
-      <SelectTrigger label={currentLabel} onClick={open} />
+      <SelectTrigger label={currentLabel} onClick={toggle} />
       {isOpen && (
         <SelectOptionsList
           ref={ref}
